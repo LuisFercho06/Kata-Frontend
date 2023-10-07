@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .options button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% questions.forEach(function(question, index) { %>
+            <div class="question"><%= index + 1 %>. <%= question.question %></div>
+
+            <div class="options">
+                    <button"><%= question.correct_answer %></button>
+            </div>
+
+        <% }); %>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            ¡Respuesta correcta!
+        </div>
+    </div>
+    <div class="popup" id="popupError">
+        <div class="popup-content">
+            ¡Respuesta incorrecta!
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer(answer) {
+            if (answer === 'Paris') {
+                document.getElementById('popup').style.display = 'flex';
+            }else{
+                document.getElementById('popupError').style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
